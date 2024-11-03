@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Employee Management System</title>
+    <link rel="stylesheet" href="./node_modules/animate.css/animate.min.css" />
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap-icons/font/bootstrap-icons.min.css"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <script defer src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script
+      defer
+      src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+    ></script>
+    <script defer src="./node_modules/axios/dist/axios.min.js"></script>
+    <script defer src="./js/index.js"></script>
+  </head>
+  <body>
+    <header
+      class="container pt-2 d-flex justify-content-between align-items-center border-bottom"
+    >
+      <h1>
+        <i class="bi bi-person-raised-hand"></i>
+        <span class="text-primary">E</span>MS
+      </h1>
+      <div>
+        <button id="btn-new-employee" class="btn btn-sm btn-outline-success">
+          + NEW EMPLOYEE
+        </button>
+      </div>
+    </header>
+    <main class="row">
+      <form
+        action=""
+        class="col-11 col-lg-4 mt-2 border-black ms-4 border border-primary-subtle rounded-1 border border-3"
+      >
+        <div id="id-section" class="m-2">
+          <label class="me-2 d-flex justify-content-center fw-bold"
+            >EMPLOYEE ID</label
+          >
+          <input
+            id="txt-id"
+            pattern="^[A-Za-z]+$"
+            type="text"
+            disabled
+            class="form-control"
+            placeholder="Eg: E-001"
+          />
+        </div>
+        <div id="name-section" class="m-2">
+          <label class="me-2 d-flex justify-content-center fw-bold"
+            >EMPLOYEE NAME</label
+          >
+          <input
+            id="txt-name"
+            type="text"
+            class="form-control"
+            placeholder="Eg: Sachith Rangana"
+          />
+          <div class="invalid-feedback"></div>
+        </div>
+        <div id="address-section" class="m-2">
+          <label class="me-2 d-flex justify-content-center fw-bold"
+            >EMPLOYEE ADDRESS</label
+          >
+          <input
+            id="txt-address"
+            pattern="^[A-Za-z]+$"
+            type="text"
+            class="form-control"
+            placeholder="Eg: Srilanka"
+          />
+          <div class="invalid-feedback">
+            Address should have at least 3 characters
+          </div>
+        </div>
+        <div
+          id="gender-section"
+          class="d-grid align-items-center justify-content-center border"
+        >
+          <label class="me-2 d-flex justify-content-center fw-bold mb-2"
+            >EMPLOYEE GENDER</label
+          >
+
+          <div class="d-flex justify-content-evenly">
+            <div class="d-flex">
+              <input
+                id="txt-gender-male"
+                type="radio"
+                class="form-check-input me-2"
+                value="male"
+                name="gender"
+              />
+              <label for="txt-gender-male">Male</label>
+            </div>
+            <div class="d-flex">
+              <input
+                id="txt-gender-female"
+                type="radio"
+                class="form-check-input me-2"
+                value="female"
+                name="gender"
+              />
+              <label for="txt-gender-female">Female</label>
+            </div>
+          </div>
+          <div class="invalid-feedback"></div>
+        </div>
+        <div id="deprt-section" class="m-2">
+          <label class="me-2 d-flex justify-content-center fw-bold mb-2"
+            >EMPLOYEE DEPARTMENT</label
+          >
+          <select
+            id="cb-department"
+            class="form-select"
+            aria-label="Disabled select example"
+          >
+            <option selected value="Academic">Academic</option>
+            <option value="Football">Football</option>
+            <option value="Cricket">Cricket</option>
+            <option value="Badminton">Badminton</option>
+            <option value="Kung-Fu">Kung-Fu</option>
+          </select>
+          <div class="invalid-feedback"></div>
+        </div>
+        <div class="d-flex justify-content-end mb-2">
+          <button id="btn-save" class="btn btn-primary me-1" disabled>
+            Save
+          </button>
+          <button id="btn-clear" type="reset" class="btn btn-warning me-1">
+            Clear
+          </button>
+          <button id="btn-update" type="button" class="btn btn-success">
+            Update
+          </button>
+        </div>
+      </form>
+
+      <div class="col-11 col-lg-5 ms-4">
+        <table id="tbl-employee" class="table table-hover table-bordered mt-2">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>NAME</th>
+              <th>DEPARTMENT</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!--            <tr class="fw-normal" tabindex="0">-->
+            <!--                <td>S001</td>-->
+            <!--                <td>-->
+            <!--                    <i class="bi bi-gender-male"></i>-->
+            <!--                    Ronaldo-->
+            <!--                </td>-->
+            <!--                <td class="department">Football</td>-->
+            <!--                <td><i class="bi bi-trash-fill"></i></td>-->
+            <!--            </tr>-->
+            <!--            <tr class="fw-normal" tabindex="0">-->
+            <!--                <td>S002</td>-->
+            <!--                <td>-->
+            <!--                    <i class="bi bi-gender-male"></i>-->
+            <!--                    Messi-->
+            <!--                </td>-->
+            <!--                <td class="department">Football</td>-->
+            <!--                <td><i class="bi bi-trash-fill"></i></td>-->
+            <!--                &lt;!&ndash;                    <th><i class="bi bi-trash-fill"></i></th>&ndash;&gt;-->
+            <!--            </tr>-->
+            <!--            <tr class="fw-normal" tabindex="0">-->
+            <!--                <td>S003</td>-->
+            <!--                <td>-->
+            <!--                    <i class="bi bi-gender-male"></i>-->
+            <!--                    Rohith Sharma-->
+            <!--                </td>-->
+            <!--                <td class="department">Cricket</td>-->
+            <!--                <td><i class="bi bi-trash-fill"></i></td>-->
+            <!--                &lt;!&ndash;                    <th><i class="bi bi-trash-fill"></i></th>&ndash;&gt;-->
+            <!--            </tr>-->
+            <!--            <tr class="fw-normal" tabindex="0">-->
+            <!--                <td>S003</td>-->
+            <!--                <td>-->
+            <!--                    <i class="bi bi-gender-male"></i>-->
+            <!--                    Dinuka Karnarathne-->
+            <!--                </td>-->
+            <!--                <td class="department">Badminton</td>-->
+            <!--                <td><i class="bi bi-trash-fill"></i></td>-->
+            <!--                &lt;!&ndash;                    <th><i class="bi bi-trash-fill"></i></th>&ndash;&gt;-->
+            <!--            </tr>-->
+            <!--            <tr class="fw-normal" tabindex="0">-->
+            <!--                <td>S003</td>-->
+            <!--                <td>-->
+            <!--                    <i class="bi bi-gender-female"></i>-->
+            <!--                    Chamari Atapaththu-->
+            <!--                </td>-->
+            <!--                <td class="department">Cricket</td>-->
+            <!--                <td><i class="bi bi-trash-fill" data-bs-toggle="tooltip" data-bs-title="delete"></i></td>-->
+            <!--            </tr>-->
+          </tbody>
+          <tfoot class="table-group-divider">
+            <tr>
+              <td colspan="4" class="text-center">No Employees Found Yet!</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>

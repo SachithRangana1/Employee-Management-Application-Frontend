@@ -1,0 +1,53 @@
+body{
+    font-family: Ubuntu, sans-serif;
+}
+form > div > label{
+
+    &:after{
+        content: "*";
+        color: red;
+    }
+}
+table {
+    thead > tr {
+        text-align: center;
+    }
+
+    tbody tr {
+        cursor: pointer;
+
+        &:focus{
+            outline: 2px solid dodgerblue;
+
+        }
+        &:hover{
+            font-size: 1.005rem;
+            background-color: orchid;
+        }
+
+        .department {
+            text-align: center;
+        }
+        td:nth-child(2){
+            i{
+                padding-right: 5px;
+
+                &.bi-gender-male{
+                    color: dodgerblue;
+                }
+                &.bi-gender-female{
+                    color: orchid;
+                }
+            }
+        }
+        td:nth-child(4){
+            i{
+                font-size: 1rem;
+
+                &:hover{
+                    color: #f60303;
+                }
+            }
+        }
+    }
+}
